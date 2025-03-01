@@ -18,7 +18,7 @@ Welcome to the Globetrotter App, the ultimate travel guessing game! This full-st
 ## Technologies Used
 
 - **Backend**: Java Spring Boot
-- **Frontend**: React (considered for engaging and interactive UI)
+- **Frontend**: JavaScript and HTML + CSS (considered for engaging and interactive UI)
 - **Database**: MySQL
 - **Additional Tools**:
   - **AI Integration**: Utilizing OpenAI for expanding the dataset.
