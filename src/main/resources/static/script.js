@@ -15,7 +15,7 @@ document.getElementById('registerUser').addEventListener('click', function () {
         return;
     }
 
-    fetch(`http://localhost:8080/api/users/register?username=${username}`, {
+    fetch(`http://13.50.239.130:8080/api/users/register?username=${username}`, {
         method: "POST"
     })
         .then(response => response.json())
@@ -35,7 +35,7 @@ document.getElementById('registerUser').addEventListener('click', function () {
 function fetchClue() {
     document.getElementById('clueText').innerText = 'Loading...';
     document.getElementById('clueCounter').innerText = 'Loading...';
-    fetch('http://localhost:8080/api/games/random-question')
+    fetch('http://13.50.239.130:8080/api/games/random-question')
         .then(response => response.json())
         .then(data => {
             document.getElementById('clueText').innerText = data.clue || 'No clues available!';
@@ -86,7 +86,7 @@ function validateAnswer(answerId, answerText, button) {
         answerText: answerText
     };
 
-    fetch(`http://localhost:8080/api/games/validate-answer`, {
+    fetch(`http://13.50.239.130:8080/api/games/validate-answer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestData)
@@ -111,7 +111,7 @@ function validateAnswer(answerId, answerText, button) {
         .catch(error => console.error("Error validating answer:", error));
 }
 function fetchNextClue() {
-    fetch(`http://localhost:8080/api/games/next-clue?destinationId=${currentQuestion.destinationId}&currentClue=${encodeURIComponent(currentQuestion.currentClue)}`)
+    fetch(`http://13.50.239.130:8080/api/games/next-clue?destinationId=${currentQuestion.destinationId}&currentClue=${encodeURIComponent(currentQuestion.currentClue)}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('clueText').innerText = data.clue;
@@ -148,7 +148,7 @@ document.getElementById('nextClue').addEventListener('click', function () {
         return;
     }
 
-    fetch(`http://localhost:8080/api/games/next-clue?destinationId=${currentQuestion.destinationId}&currentClue=${encodeURIComponent(currentQuestion.currentClue)}`)
+    fetch(`http://13.50.239.130:8080/api/games/next-clue?destinationId=${currentQuestion.destinationId}&currentClue=${encodeURIComponent(currentQuestion.currentClue)}`)
         .then(response => {
             if (response.status === 204) { // No more clues, move to next question
                 console.log("No more clues. Moving to next question.");
@@ -171,7 +171,7 @@ document.getElementById('nextClue').addEventListener('click', function () {
 
 // Fetch Fun Facts
 function fetchFunFacts(destinationId, isCorrect = false) {
-    fetch(`http://localhost:8080/api/destinations/${destinationId}/fun-facts`)
+    fetch(`http://13.50.239.130:8080/api/destinations/${destinationId}/fun-facts`)
         .then(response => response.json())
         .then(data => {
             funFacts = data;
@@ -216,14 +216,14 @@ window.onload = () => {
     const inviteLink = urlParams.get('invite');
 
     if (inviteLink) {
-        fetch(`http://localhost:8080/api/challenges/join/${inviteLink}`)
+        fetch(`http://13.50.239.130:8080/api/challenges/join/${inviteLink}`)
             .then(response => response.json())
             .then(data => {
                 if (data.accepted) {
                     alert("This challenge has already been accepted.");
                 } else {
                     alert(`You're joining a challenge from ${data.challengerUsername}!`);
-                    fetch(`http://localhost:8080/api/challenges/accept/${inviteLink}`, { method: "POST" });
+                    fetch(`http://13.50.239.130:8080/api/challenges/accept/${inviteLink}`, { method: "POST" });
                 }
             })
             .catch(error => console.error("Error joining challenge:", error));
@@ -236,7 +236,7 @@ const shareOnWhatsApp = (inviteLink) => {
 };
 
 document.getElementById('shareOnWhatsApp').addEventListener('click', () => {
-    fetch(`http://localhost:8080/api/challenges/create?challengerUsername=${username}&invitedUsername=Friend&gameSessionId=${sessionId}`, {
+    fetch(`http://13.50.239.130:8080/api/challenges/create?challengerUsername=${username}&invitedUsername=Friend&gameSessionId=${sessionId}`, {
         method: "POST"
     })
         .then(response => response.json())
