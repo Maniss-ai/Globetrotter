@@ -20,6 +20,9 @@ public class ChallengePojo {
     private String inviteLink;
     private boolean accepted;
 
+    // New field for the dynamic image URL used in sharing
+    private String dynamicImageUrl;
+
     @ManyToOne
     @JoinColumn(name = "game_session_id")
     private GameSessionPojo gameSessionPojo;

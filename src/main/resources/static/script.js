@@ -24,6 +24,11 @@ document.getElementById('registerUser').addEventListener('click', function () {
             console.log("Game session started. Session ID:", sessionId);
             document.getElementById('score').innerText = data.currentScore;
             document.getElementById('questionsAttempted').innerText = data.totalQuestions;
+
+            // Display username
+            document.getElementById('usernameDisplay').textContent = username;
+            document.getElementById('userInfo').style.display = 'block';
+
             document.getElementById('registrationScreen').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'flex';
             fetchClue();
@@ -211,6 +216,33 @@ document.getElementById('closeFunFact').addEventListener('click', function () {
 document.getElementById('nextFunFact').addEventListener('click', function () {
     showNextFunFact();
 });
+
+document.getElementById('shareOnWhatsApp').addEventListener('click', () => {
+    fetch(`http://13.50.239.130:8080/api/challenges/create?challengerUsername=${username}&invitedUsername=Friend&gameSessionId=${sessionId}`, {
+        method: "POST"
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Populate modal with dynamic image and invite link
+            document.getElementById('challengeImage').src = data.dynamicImageUrl;
+            document.getElementById('challengeInviteLink').innerText = data.inviteLink;
+            document.getElementById('challengeModal').style.display = 'block';
+
+            // Set share button action inside the modal
+            document.getElementById('challengeShareButton').onclick = () => {
+                let shareText = `Join me in the Globetrotter Challenge! My score is ${document.getElementById('score').innerText}. Click the link to play: ${data.inviteLink}`;
+                let whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+                window.open(whatsappUrl, '_blank');
+            }
+        })
+        .catch(error => console.error("Error sharing challenge:", error));
+});
+
+// Close challenge share modal
+document.getElementById('closeChallengeModal').addEventListener('click', () => {
+    document.getElementById('challengeModal').style.display = 'none';
+});
+
 window.onload = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const inviteLink = urlParams.get('invite');
@@ -222,26 +254,12 @@ window.onload = () => {
                 if (data.accepted) {
                     alert("This challenge has already been accepted.");
                 } else {
-                    alert(`You're joining a challenge from ${data.challengerUsername}!`);
+                    // Assuming data.gameSessionPojo.currentScore holds the challenger's score
+                    alert(`You're joining a challenge from ${data.challengerUsername} with a score of ${data.gameSessionPojo.currentScore}!`);
+                    // Accept the challenge so that it cannot be reused
                     fetch(`http://13.50.239.130:8080/api/challenges/accept/${inviteLink}`, { method: "POST" });
                 }
             })
             .catch(error => console.error("Error joining challenge:", error));
     }
 };
-const shareOnWhatsApp = (inviteLink) => {
-    let shareText = `Join me in the Globetrotter Challenge! Click the link to play: ${inviteLink}`;
-    let whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-    window.open(whatsappUrl, '_blank');
-};
-
-document.getElementById('shareOnWhatsApp').addEventListener('click', () => {
-    fetch(`http://13.50.239.130:8080/api/challenges/create?challengerUsername=${username}&invitedUsername=Friend&gameSessionId=${sessionId}`, {
-        method: "POST"
-    })
-        .then(response => response.json())
-        .then(data => {
-            shareOnWhatsApp(data.inviteLink);
-        })
-        .catch(error => console.error("Error sharing challenge:", error));
-});
