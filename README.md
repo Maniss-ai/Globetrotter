@@ -1,54 +1,84 @@
 # Globetrotter
 🧩 The Globetrotter Challenge – The Ultimate Travel Guessing Game!
 
+
 # Globetrotter App
 
-Welcome to the Globetrotter App, the ultimate travel guessing game! This full-stack web application challenges users to guess destinations based on cryptic clues. Upon guessing, users unlock fun facts and trivia about the place. Ready to put your travel knowledge to the test?
+## Project Overview
 
-## Features
+Welcome to the Globetrotter App, the ultimate travel guessing game designed to test your knowledge of global destinations. In this interactive full-stack web application, users receive cryptic clues about various famous places worldwide and must guess which destination the clues refer to. Successful guesses unlock fun facts and trivia, enhancing the learning experience.
 
-- **Guess the Destination**: Users receive 1-2 clues about a famous place and guess the correct destination.
-- **Immediate Feedback**: Depending on the guess, users see animated feedback:
-  - **Correct Answer**: Confetti animation and a fun fact about the destination.
-  - **Incorrect Answer**: A sad-face animation and a fun fact.
-- **Score Tracking**: The app tracks the total number of correct and incorrect answers, displaying the total score.
-- **Challenge a Friend**: Users can invite friends to play by sending a dynamic invite link via WhatsApp.
-- **User Profiles**: Users can create and manage their profiles, tracking their game history and scores.
+## Key Features
+
+- **Cryptic Clues**: Each game presents one or two clues about a destination to guess.
+- **Immediate Feedback**: Users receive animated feedback based on their guesses:
+  - **Correct Answer**: Confetti animation and a fun fact.
+  - **Incorrect Answer**: Sad face animation and a fun fact.
+- **Score Tracking**: Tracks and displays the user's total score based on correct and incorrect answers.
+- **Challenge a Friend**: Allows users to send a game link to friends to invite them to play, complete with dynamic invite images.
+- **User Profiles**: Users can register and manage their profiles, tracking game history and scores.
 
 ## Technologies Used
 
-- **Backend**: Java Spring Boot
-- **Frontend**: JavaScript and HTML + CSS (considered for engaging and interactive UI)
-- **Database**: MySQL
-- **Additional Tools**:
-  - **AI Integration**: Utilizing OpenAI for expanding the dataset.
-  - **Deployment**: Vercel or Netlify for hosting the frontend and Railway for the backend.
+- **Frontend**: HTML, CSS, and JavaScript - These core web technologies create the user interface, ensuring a responsive and interactive experience.
+- **Backend**: Java Spring Boot - Chosen for its comprehensive infrastructure support for developing robust web applications.
+- **Database**: MySQL - Utilized for its reliability and scalability in handling complex data requirements.
+- **AI Integration**: Uses OpenAI to enrich the dataset with clues, trivia, and fun facts.
 
-## Project Setup
+## POJOs Connection Overview
+
+The application uses several POJOs to manage and store data:
+
+- **UserPojo**: Represents users of the application. Each user can have multiple game sessions.
+- **GameSessionPojo**: Stores information about individual gaming sessions. It is linked to a user and can have multiple challenges associated with it.
+- **DestinationPojo**: Contains details about each destination, which includes a list of clues, fun facts, and trivia related to that destination.
+- **CluePojo**: Linked to a specific destination. Used to store the clues that help users guess the destination.
+- **FunFactPojo**: Also linked to a specific destination, it stores fun facts revealed after a guess.
+- **TriviaPojo**: Stores trivia about a destination, similar to fun facts.
+- **AnswerPojo**: Related to a specific destination, it stores possible answers to the clues provided.
+- **ChallengePojo**: Manages challenges between users, linked to specific game sessions.
+
+### Database Relationships
+
+- **One-to-Many**: `UserPojo` to `GameSessionPojo`, `DestinationPojo` to `CluePojo`, `DestinationPojo` to `FunFactPojo`, and `DestinationPojo` to `TriviaPojo`.
+- **Many-to-One**: `GameSessionPojo` to `UserPojo`, `CluePojo`, `FunFactPojo`, `TriviaPojo`, and `AnswerPojo` to `DestinationPojo`.
+
+
+## Setup Instructions
 
 ### Prerequisites
 
-- Java JDK 11 or newer
-- Node.js and npm (for React frontend)
-- MySQL Server
+- Java JDK 11+
+- Spring Boot
+- MySQL
+- Git
+
+### Cloning the Repository
+
+First, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/yourgithubusername/globetrotter.git
+cd globetrotter
+```
 
 ### Backend Setup
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourgithubusername/globetrotter.git
-   ```
-2. **Navigate to the backend directory** and install dependencies:
+1. **Navigate to the backend directory**:
    ```bash
    cd backend
-   mvn install
    ```
-3. **Set up the MySQL database**:
-   - Create a new database named `globetrotter`
-   - Import the initial schema from the provided SQL file.
-
-4. **Configure application properties**:
-   - Update `application.properties` with your database credentials and other configurations.
+2. **Install dependencies**:
+   ```bash
+   mvn clean install
+   ```
+3. **Create the MySQL database** and import the schema:
+   ```sql
+   CREATE DATABASE globetrotter;
+   USE globetrotter;
+   -- Import schema.sql
+   ```
+4. **Configure application properties** to include your database credentials in `src/main/resources/application.properties`.
 
 5. **Run the application**:
    ```bash
@@ -57,27 +87,16 @@ Welcome to the Globetrotter App, the ultimate travel guessing game! This full-st
 
 ### Frontend Setup
 
-1. **Navigate to the frontend directory** and install dependencies:
+1. **Navigate to the frontend directory**:
    ```bash
    cd ../frontend
-   npm install
    ```
-2. **Start the development server**:
-   ```bash
-   npm start
-   ```
-   This will launch the app at `http://localhost:3000`.
-
-## Architecture Overview
-
-This section includes a basic diagram and explanation of the app's architecture, detailing how the frontend interacts with the backend and the database.
-
-![Architecture Diagram](link-to-your-diagram.png)
-
-## API Documentation
-
-Refer to the `API.md` for detailed documentation on backend endpoints, including request formats and example responses.
+2. **Open the HTML file in any web browser to run the application**.
 
 ## Deployment
 
-Instructions for deploying the app to Vercel/Netlify for the frontend and Railway for the backend.
+Detailed instructions on how to deploy both the frontend and backend on platforms like Vercel, Netlify, and Railway.
+
+## Contributions
+
+Encourages users to contribute by providing guidelines on how to propose changes or add new features.
