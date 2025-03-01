@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globetrotter Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ✅ User Registration Screen -->
+<div id="registrationScreen" class="screen">
+    <h1>Welcome to Globetrotter Challenge!</h1>
+    <p>Enter your name to start playing.</p>
+    <input type="text" id="usernameInput" placeholder="Enter your name">
+    <button id="registerUser">Register</button>
+</div>
+
+<!-- ✅ Game Screen (Hidden Initially) -->
+<div id="gameScreen" class="screen" style="display: none;">
+    <div id="scoreContainer">
+        <p><strong>Score:</strong> <span id="score">0</span></p>
+        <p><strong>Questions Attempted:</strong> <span id="questionsAttempted">0</span></p>
+    </div>
+
+    <div id="clueBanner">
+        <p id="clueText">Loading clue...</p>
+        <p id="clueCounter">Clue 1 of 2</p>
+    </div>
+
+    <h2>Guess the Destination!</h2>
+    <div id="optionsContainer" class="grid-container"></div>
+    <button id="nextClue">Next Clue</button>
+    <button id="shareOnWhatsApp">Share on WhatsApp</button>
+</div>
+
+<!-- ✅ Fun Fact Modal -->
+<div id="funFactModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h2 id="funFactHeader">🎉 Congratulations!</h2>
+        <p id="funFactText"></p>
+        <button id="nextFunFact">Next Fun Fact</button>
+        <button id="closeFunFact">Play More</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

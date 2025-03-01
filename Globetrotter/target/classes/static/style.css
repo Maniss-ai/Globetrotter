@@ -1,0 +1,300 @@
+/* General Styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+/* Start Screen */
+.screen {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url('bg.webp') no-repeat center center fixed; /* Ensure path points to your actual image file */
+    background-size: cover;
+}
+
+/* Start Button */
+#startGame {
+    padding: 15px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* White text for visibility */
+    background-color: #ff5c5c; /* A visually pleasing red shade */
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Adds depth */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    outline: none;
+}
+
+#startGame:hover {
+    background-color: #ff7878; /* Slightly lighter red on hover */
+    transform: scale(1.08); /* Slightly enlarge on hover */
+}
+
+/* Game Screen */
+#gameScreen {
+    height: 100vh;
+    width: 100vw;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('light_bg.webp') no-repeat center center fixed; /* Use a light-themed background */
+    background-size: cover;
+    text-align: center;
+    padding: 20px;
+    color: #222; /* Dark text for contrast */
+}
+
+/* Clue Container */
+#clueContainer {
+    font-size: 24px;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.9); /* Bright background for better visibility */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+    text-align: center;
+}
+
+/* ✅ 2x2 Grid for Answer Buttons */
+#optionsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 12px;
+    margin-top: 20px;
+    width: 60%;
+    justify-content: center;
+}
+
+/* Answer Buttons */
+.option-btn {
+    padding: 14px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.option-btn:hover {
+    background-color: #0056b3;
+}
+
+.option-btn:active {
+    transform: scale(0.98);
+}
+
+/* Scoreboard (Top) */
+#scoreContainer {
+    width: 80%;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Next Clue Button */
+#nextClue {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #34c759; /* Green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+#nextClue:hover {
+    background-color: #2ea44f;
+    transform: scale(1.05);
+}
+
+#nextClue:active {
+    transform: scale(0.98);
+}
+.feedback-box {
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: black;
+    font-weight: bold;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Clue Banner (Top) */
+#clueBanner {
+    background-color: #ffeb3b;
+    color: #333;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* ✅ Answer Buttons */
+.option-btn {
+    width: 80%;
+    padding: 10px;
+    font-size: 18px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.option-btn:hover {
+    background-color: #0056b3;
+}
+
+/* ✅ Score & Question Count */
+#scoreContainer {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* ✅ Next Clue Button */
+#nextClue {
+    margin-top: 20px;
+    margin-right: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#nextClue:disabled {
+    background-color: #ec9898;
+    cursor: not-allowed;
+}
+
+/* ✅ Responsive */
+@media (max-width: 600px) {
+    #clueBanner {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
+
+#registrationScreen {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#usernameInput {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#clueBanner {
+    background-color: yellow;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+#optionsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ✅ Creates a 2x2 Grid */
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.option-btn {
+    width: 100px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.option-btn:hover {
+    background-color: darkblue;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+}
+#welcomeBanner {
+    background-color: white; /* Set the background color to white */
+    padding: 20px; /* Add padding around the text */
+    border-radius: 10px; /* Optional: Rounds the corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds a subtle shadow */
+    margin: 20px; /* Adds margin around the box for spacing */
+    color: #333; /* Sets the text color to a dark gray for contrast */
+    text-align: center; /* Ensures the text is centered */
+}
+
+/* For additional text styling inside the banner */
+#welcomeBanner h1 {
+    margin: 0; /* Removes default margin */
+    font-size: 24px; /* Sets font size, adjust as needed */
+    font-weight: bold; /* Makes the font bold */
+}
