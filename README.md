@@ -76,7 +76,7 @@ cd globetrotter
    ```sql
    CREATE DATABASE globetrotter;
    USE globetrotter;
-   -- Import schema.sql
+   -- Import backup.sql
    ```
 4. **Configure application properties** to include your database credentials in `src/main/resources/application.properties`.
 
